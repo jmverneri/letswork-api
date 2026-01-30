@@ -1,14 +1,13 @@
 from fastapi import FastAPI
-from app.routers import auth, students, companies, job_offers, careers
+from app.routers import student_router, career_router
 
-app = FastAPI(title="LetsWork API")
+app = FastAPI(title="UTN Students API Mirror")
 
-app.include_router(auth.router)
-app.include_router(students.router)
-app.include_router(companies.router)
-app.include_router(job_offers.router)
-app.include_router(careers.router)
+# Incluimos las rutas de las carpetas
+app.include_router(student_router.router)
+# app.include_router(career_router.router)
+app.include_router(career_router.router)
 
-@app.get("/health")
-def health():
-    return {"status": "ok"}
+@app.get("/")
+def read_root():
+    return {"message": "API de la Universidad funcionando"}
