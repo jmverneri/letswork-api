@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Header, HTTPException
 from app.schemas.career import Career
 from typing import List
+from app.config import API_KEY_REQUIRED
 
 router = APIRouter(prefix="/careers", tags=["Careers"])
 
@@ -18,14 +19,14 @@ careers_mock = [
 @router.get("/", response_model=List[Career])
 async def get_all_careers(x_api_key: str = Header(None)):
     # Verificamos la Key para cumplir con la consigna
-    if x_api_key != "4f3bceed-50ba-4461-a910-518598664c08":
+    if x_api_key != API_KEY_REQUIRED:
         raise HTTPException(status_code=401, detail="Invalid API Key")
     
     return careers_mock
 
 @router.get("/{career_id}", response_model=Career)
 async def get_career_by_id(career_id: int, x_api_key: str = Header(None)):
-    if x_api_key != "4f3bceed-50ba-4461-a910-518598664c08":
+    if x_api_key != API_KEY_REQUIRED:
         raise HTTPException(status_code=401, detail="Invalid API Key")
     
     career = next((c for c in careers_mock if c["careerId"] == career_id), None)

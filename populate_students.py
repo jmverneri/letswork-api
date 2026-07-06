@@ -5,7 +5,7 @@ from faker import Faker
 import random
 
 # 🔹 Configuración de la DB
-DATABASE_URL = "mysql+pymysql://root:@localhost:3306/letswork"
+DATABASE_URL = "mysql+pymysql://root:root@localhost:3306/letswork"
 engine = create_engine(DATABASE_URL, echo=True)
 
 # 🔹 Configuración de hash de contraseña
