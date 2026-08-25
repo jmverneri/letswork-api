@@ -1,1 +1,2 @@
-API_KEY_REQUIRED = "4f3bceed-50ba-4461-a910-518598664c08"
+import os
+API_KEY_REQUIRED = os.environ.get("API_KEY", "")
